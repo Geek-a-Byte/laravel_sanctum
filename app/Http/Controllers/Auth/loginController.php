@@ -19,11 +19,11 @@ class loginController extends Controller
     {
         try {
             $request->validate([
-                'email' => 'email|required',
+                'student_email' => 'email|required',
                 'password' => 'required',
             ]);
 
-            $credentials = request(['email', 'password']);
+            $credentials = request(['student_email', 'password']);
 
             if (!Auth::attempt($credentials)) {
                 return response()->json([
@@ -33,7 +33,7 @@ class loginController extends Controller
                 ]);
             }
 
-            $user =  User::where('email', $request->email)->first();
+            $user =  User::where('student_email', $request->student_email)->first();
 
             if (!Hash::check($request->password, $user->password, [])) {
                 return response()->json([

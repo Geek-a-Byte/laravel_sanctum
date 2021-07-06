@@ -11,7 +11,7 @@ class userController extends Controller
     {
         return $request->user();
     }
-
+  
     public function logout()
     {
         Auth::user()->token()->delete();
